@@ -2,59 +2,52 @@
 
 namespace Database\Seeders;
 
+use App\Models\Konselis;
+use App\Models\konselors;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // Role
-        $role1 = Role::findOrCreate('admin');
-        $role2 = Role::findOrCreate('kasir');
-
-        // Permissions
-        $permissions_admin = [
-            'manajemen_produk',
-            'manajemen_cabang',
-        ];
-
-        foreach ($permissions_admin as $permission) {
-            Permission::findOrCreate($permission, 'web');
-        }
-
-        $role1->givePermissionTo($permissions_admin);
-
-        // Admin
+        // ===== ADMIN =====
         $admin = User::create([
-            'name' => 'admin',
+            'name' => 'Admin',
             'email' => 'admin@app.id',
             'password' => bcrypt('password'),
         ]);
 
         $admin->assignRole('admin');
 
-
-        // Bendahara
-        $kasir = User::create([
-            'name' => 'kasir',
-            'email' => 'kasir@app.id',
+        // ===== KONSELOR =====
+        $konselorUser = User::create([
+            'name' => 'Budi Konselor',
+            'email' => 'konselor@app.id',
             'password' => bcrypt('password'),
         ]);
 
-        $kasir_permissions = [
-            'manajemen_produk',
-        ];
+        $konselorUser->assignRole('konselor');
 
-        $kasir->assignRole('kasir');
-        $kasir->givePermissionTo($kasir_permissions);
+        konselors::create([
+            'user_id' => $konselorUser->id,
+            'is_active' => true,
+        ]);
 
-       
+        // ===== KONSELI =====
+        $konseliUser = User::create([
+            'name' => 'Andi Konseli',
+            'email' => 'konseli@app.id',
+            'password' => bcrypt('password'),
+        ]);
+
+        $konseliUser->assignRole('konseli');
+
+        Konselis::create([
+            'user_id' => $konseliUser->id,
+            'nim' => '12345678',
+            'phone' => '08123456789',
+        ]);
     }
 }
