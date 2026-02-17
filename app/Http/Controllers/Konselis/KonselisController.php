@@ -64,6 +64,25 @@ class KonselisController extends Controller
         }
     }
 
+    public function register(KonselisRequest $request)
+    {
+        try {
+            $data = $this->konselisService->register($request);
+
+            return $this->successResponseWithData(
+                $data,
+                'Registrasi berhasil',
+                Response::HTTP_CREATED
+            );
+        } catch (Exception $e) {
+            return $this->errorResponse(
+                $e->getMessage(),
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+    }
+
+
     public function show($id)
     {
         try {

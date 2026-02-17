@@ -55,6 +55,10 @@ class KonselisService
                 'user_id' => $user->id,
                 'nim' => $data['nim'],
                 'phone' => $data['phone'],
+                'domisili' => $data['domisili'],
+                'jurusan' => $data['jurusan'],
+                'umur' => $data['umur'],
+                'jenis_kelamin' => $data['jenis_kelamin'],
             ]);
 
             DB::commit();
@@ -62,6 +66,35 @@ class KonselisService
             DB::rollBack();
             throw $e;
         }
+    }
+
+    public function register($request)
+    {
+        return DB::transaction(function () use ($request) {
+
+            $user = User::create([
+                'name' => $request->nama,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+
+            $user->assignRole('konseli');
+
+            $konseli = Konselis::create([
+                'user_id' => $user->id,
+                'nim' => $request->nim,
+                'phone' => $request->phone,
+                'domisili' => $request->domisili,
+                'jurusan' => $request->jurusan,
+                'umur' => $request->umur,
+                'jenis_kelamin' => $request->jenis_kelamin,
+            ]);
+
+            return [
+                'user_id' => $user->id,
+                'konseli_id' => $konseli->id,
+            ];
+        });
     }
 
     public function show($id)

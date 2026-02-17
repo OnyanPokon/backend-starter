@@ -16,6 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('nim')->unique();
             $table->string('phone');
+            $table->string('domisili');
+            $table->string('jurusan');
+            $table->unsignedTinyInteger('umur');
+            $table->enum('jenis_kelamin', ['L', 'P']);
             $table->timestamps();
         });
     }

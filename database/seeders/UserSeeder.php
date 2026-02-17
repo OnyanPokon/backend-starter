@@ -48,6 +48,10 @@ class UserSeeder extends Seeder
             'user_id' => $konseliUser->id,
             'nim' => '12345678',
             'phone' => '08123456789',
+            'domisili' => 'Jakarta',
+            'jurusan' => 'Teknik Informatika',
+            'umur' => 20,
+            'jenis_kelamin' => 'L',
         ]);
     }
 }

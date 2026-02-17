@@ -9,7 +9,11 @@ class Konselis extends Model
     protected $fillable = [
         'user_id',
         'nim',
-        'phone'
+        'phone',
+        'domisili',
+        'jurusan',
+        'umur',
+        'jenis_kelamin',
     ];
 
     public function user()

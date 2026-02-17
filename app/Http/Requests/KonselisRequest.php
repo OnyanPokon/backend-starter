@@ -33,6 +33,10 @@ class KonselisRequest extends FormRequest
                 'password' => 'required|min:6',
                 'nim' => 'required|string|unique:konselis,nim',
                 'phone' => 'required|string',
+                'domisili' => 'required|string|max:255',
+                'jurusan' => 'required|string|max:255',
+                'umur' => 'required|integer|min:15|max:100',
+                'jenis_kelamin' => 'required|in:L,P',
             ];
         }
 
@@ -58,6 +62,10 @@ class KonselisRequest extends FormRequest
                 ],
 
                 'phone' => 'sometimes|required|string',
+                'domisili' => 'sometimes|required|string|max:255',
+                'jurusan' => 'sometimes|required|string|max:255',
+                'umur' => 'sometimes|required|integer|min:15|max:100',
+                'jenis_kelamin' => 'sometimes|required|in:L,P',
             ];
         }
 
@@ -72,6 +80,12 @@ class KonselisRequest extends FormRequest
             'nama.string' => 'Nama harus berupa teks.',
             'nim.required' => 'NIM wajib diisi.',
             'nim.string' => 'NIM harus berupa teks.',
+            'domisili.required' => 'Domisili wajib diisi.',
+            'jurusan.required' => 'Jurusan wajib diisi.',
+            'umur.required' => 'Umur wajib diisi.',
+            'umur.integer' => 'Umur harus berupa angka.',
+            'jenis_kelamin.required' => 'Jenis kelamin wajib dipilih.',
+            'jenis_kelamin.in' => 'Jenis kelamin tidak valid.',
         ];
     }
 }

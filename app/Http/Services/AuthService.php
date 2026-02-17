@@ -51,7 +51,7 @@ class AuthService
     {
         try {
             
-            if ($request->user()->roles->first()->name == 'kasir' || $request->user()->roles->first()->name == 'admin') {
+            if ($request->user()->roles->first()->name == 'konseli' || $request->user()->roles->first()->name == 'admin' || $request->user()->roles->first()->name == 'konselor') {
                 $responseData = [
                     'id' => $request->user()->id,
                     'name' => $request->user()->name,

@@ -23,8 +23,13 @@ class KonselisResources extends JsonResource
             ],
             'nim' => $this->nim,
             'phone' => $this->phone,
+            'domisili' => $this->domisili,
+            'jurusan' => $this->jurusan,
+            'umur' => $this->umur,
+            'jenis_kelamin' => $this->jenis_kelamin,
             'created_at' => $this->created_at->format('d F Y'),
             'updated_at' => $this->updated_at->format('d F Y'),
+            
         ];
     }
 }

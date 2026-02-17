@@ -13,9 +13,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::prefix('auth')->controller(AuthController::class)->group(function () {
         Route::get("me", "getUser");
         Route::post("logout", "logout");
-    });
+});
 
-    Route::prefix('konselis')->controller(KonselisController::class)->group(function () {
+    Route::prefix('konseli')->controller(KonselisController::class)->group(function () {
         Route::get("/", "index");
         Route::post("/", "store");
         Route::delete("/multi-delete", "multiDestroy");
@@ -72,3 +72,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 Route::prefix("auth")->controller(AuthController::class)->group(function () {
     Route::post("login", "login")->name('login');
 });
+
+Route::post('register/konseli', [KonselisController::class, 'register']);

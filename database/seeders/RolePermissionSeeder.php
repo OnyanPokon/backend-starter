@@ -17,27 +17,50 @@ class RolePermissionSeeder extends Seeder
 
         // Permissions
         $permissions = [
-            'kelola_user',
-            'kelola_jadwal',
-            'buat_tiket',
-            'lihat_tiket',
-            'approve_tiket',
+            // admin full
+            'manajemen_konseli',
+            'manajemen_konselor',
+            'manajemen_jadwal_konselor',
+            'manajemen_tiket',
+            'manajemen_hari_layanan',
+            'manajemen_user',
+
+            // konselor
+            'read_jadwal_konselor',
+            'read_konseli',
+            'read_hari_layanan',
+            'update_konselor',
+
+            // konseli
+            'create_konseli',
+            'update_konseli',
         ];
+
 
         foreach ($permissions as $permission) {
             Permission::findOrCreate($permission);
         }
 
-        $admin->givePermissionTo($permissions);
+        $admin->givePermissionTo([
+            'manajemen_konseli',
+            'manajemen_konselor',
+            'manajemen_jadwal_konselor',
+            'manajemen_tiket',
+            'manajemen_hari_layanan',
+            'manajemen_user',
+        ]);
 
         $konselor->givePermissionTo([
-            'lihat_tiket',
-            'approve_tiket',
+            'manajemen_tiket',
+            'read_jadwal_konselor',
+            'read_konseli',
+            'read_hari_layanan',
+            'update_konselor'
         ]);
 
         $konseli->givePermissionTo([
-            'buat_tiket',
-            'lihat_tiket',
+            'create_konseli',
+            'update_konseli',
         ]);
     }
 }
