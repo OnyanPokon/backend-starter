@@ -13,10 +13,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::prefix('auth')->controller(AuthController::class)->group(function () {
         Route::get("me", "getUser");
         Route::post("logout", "logout");
-});
+    });
 
     Route::prefix('konseli')->controller(KonselisController::class)->group(function () {
         Route::get("/", "index");
+        Route::get("/user/{id}", "getByUserId");
         Route::post("/", "store");
         Route::delete("/multi-delete", "multiDestroy");
         Route::get("/{id}", "show");
@@ -26,6 +27,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::prefix('konselor')->controller(KonselorController::class)->group(function () {
         Route::get("/", "index");
+        Route::get("/user/{id}", "getByUserId");
         Route::post("/", "store");
         Route::delete("/multi-delete", "multiDestroy");
         Route::get("/{id}", "show");
@@ -35,6 +37,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::prefix('hari_layanan')->controller(HariLayananController::class)->group(function () {
         Route::get("/", "index");
+        Route::get("/konselor/{id}", "hariByKonselor");
         Route::post("/", "store");
         Route::delete("/multi-delete", "multiDestroy");
         Route::get("/{id}", "show");

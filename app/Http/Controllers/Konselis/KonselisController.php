@@ -42,6 +42,26 @@ class KonselisController extends Controller
         }
     }
 
+    public function getByUserId($userId)
+    {
+        try {
+            $data = $this->konselisService->getByUserId($userId);
+
+            return $this->successResponseWithData(
+                KonselisResources::make($data),
+                'Data konseli berhasil diambil',
+                Response::HTTP_OK
+            );
+        } catch (Exception $e) {
+            return $this->errorResponse(
+                $e->getMessage(),
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+    }
+
+
+
     public function store(KonselisRequest $request)
     {
         try {

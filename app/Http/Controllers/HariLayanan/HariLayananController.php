@@ -42,6 +42,26 @@ class HariLayananController extends Controller
         }
     }
 
+    public function hariByKonselor($konselorId)
+    {
+        try {
+            $data = $this->hariLayananService->getByKonselor($konselorId);
+
+            return $this->successResponseWithDataIndex(
+                $data,
+                HariLayananResources::collection($data),
+                'Data hari layanan berdasarkan konselor berhasil diambil',
+                Response::HTTP_OK
+            );
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+
     public function store(HariLayananRequest $request)
     {
         try {

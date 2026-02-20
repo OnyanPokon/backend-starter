@@ -10,6 +10,10 @@ class HariLayanans extends Model
 
     public function jadwalKonselors()
     {
-        return $this->hasMany(JadwalKonselors::class);
+        return $this->hasMany(
+            JadwalKonselors::class,
+            'hari_layanan_id', // foreign key di jadwal_konselors
+            'id'               // local key di hari_layanans
+        );
     }
 }

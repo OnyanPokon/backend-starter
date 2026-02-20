@@ -34,6 +34,16 @@ class HariLayananService
         return $data;
     }
 
+    public function getByKonselor($konselorId)
+    {
+        return $this->model
+            ->whereHas('jadwalKonselors', function ($query) use ($konselorId) {
+                $query->where('konselor_id', $konselorId);
+            })
+            ->orderBy('hari')
+            ->get();
+    }
+
     public function store($request)
     {
         DB::beginTransaction();

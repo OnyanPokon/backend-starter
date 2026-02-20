@@ -25,6 +25,14 @@ class TiketService
             $data->where('hari', 'like', '%' . $search . '%');
         }
 
+        if ($request->konselor_id) {
+            $data->where('konselor_id', $request->konselor_id);
+        }
+
+        if ($request->konseli_id) {
+            $data->where('konseli_id', $request->konseli_id);
+        }
+
         if ($request->page) {
             $data = $data->paginate($per_page);
         } else {
@@ -46,6 +54,7 @@ class TiketService
                 'konselor_id'      => $data['konselor_id'],
                 'hari_layanan_id'  => $data['hari_layanan_id'],
                 'deskripsi_keluhan' => $data['deskripsi_keluhan'],
+                'jenis_keluhan' => $data['jenis_keluhan'],
             ]);
 
             DB::commit();

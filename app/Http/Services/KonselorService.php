@@ -36,6 +36,14 @@ class KonselorService
         return $data;
     }
 
+    public function getByUserId($userId)
+    {
+        return $this->model
+            ->with('user')
+            ->where('user_id', $userId)
+            ->firstOrFail();
+    }
+
     public function store($request)
     {
         DB::beginTransaction();
