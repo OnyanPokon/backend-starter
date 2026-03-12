@@ -17,9 +17,14 @@ class SesiKonselingResources extends JsonResource
         return [
             'id' => $this->id,
             'tiket' => [
-                'id' => $this->tiket->id,   
+                'id' => $this->tiket->id,
                 'nomor_tiket' => $this->tiket->nomor_tiket,
                 'deskripsi_keluhan' => $this->tiket->deskripsi_keluhan,
+                'status' => $this->tiket->status,
+                'jenis_layanan' => $this->tiket->jenis_layanan,
+                'jenis_keluhan' => $this->tiket->jenis_keluhan,
+                'urgensi' => $this->tiket->urgensi,
+                'created_at' => $this->tiket->created_at->format('d F Y'),
                 'konseli' => [
                     'id' => $this->tiket->konseli->id,
                     'nim' => $this->tiket->konseli->nim,
@@ -44,6 +49,7 @@ class SesiKonselingResources extends JsonResource
                 'id' => $this->hariLayanan->id,
                 'hari' => $this->hariLayanan->hari,
             ],
+            'tanggal_konseling' => $this->tanggal_konseling,
             'jam_mulai' => $this->jam_mulai,
             'jam_selesai' => $this->jam_selesai,
             'tempat' => $this->tempat,

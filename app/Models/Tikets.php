@@ -15,6 +15,7 @@ class Tikets extends Model
         'deskripsi_keluhan',
         'status',
         'jenis_keluhan',
+        'jenis_layanan',
         'urgensi'
     ];
 

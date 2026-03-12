@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Models\SesiKonselings;
+use App\Notifications\SesiKonselingCreated;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -25,6 +26,16 @@ class SesiKonselingService
             $data->where('hari', 'like', '%' . $search . '%');
         }
 
+        if ($request->konselor_id) {
+            $data->where('konselor_id', $request->konselor_id);
+        }
+
+        if ($request->konseli_id) {
+            $data->whereHas('tiket', function ($query) use ($request) {
+                $query->where('konseli_id', $request->konseli_id);
+            });
+        }
+
         if ($request->page) {
             $data = $data->paginate($per_page);
         } else {
@@ -41,7 +52,10 @@ class SesiKonselingService
         try {
             $data = $request->validated();
 
-            SesiKonselings::create($data);
+            $sesi = SesiKonselings::create($data);
+
+            $konseliUser = $sesi->tiket->konseli->user;
+            $konseliUser->notify(new SesiKonselingCreated($sesi));
 
             DB::commit();
         } catch (Exception $e) {

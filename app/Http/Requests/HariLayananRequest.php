@@ -26,7 +26,7 @@ class HariLayananRequest extends FormRequest
     {
 
         return [
-            'hari' => 'required|in:senin,selasa,rabu,kamis,jumat,sabtu,minggu',
+            'hari' => 'required|in:senin,selasa,rabu,kamis,jumat,sabtu,minggu|unique:hari_layanans,hari',
         ];
     }
 
@@ -35,6 +35,7 @@ class HariLayananRequest extends FormRequest
         return [
             'hari.required' => 'Hari wajib diisi.',
             'hari.in' => 'Hari harus salah satu dari: senin, selasa, rabu, kamis, jumat, sabtu, minggu.',
+            'hari.unique' => 'Hari sudah digunakan.',
         ];
     }
 }

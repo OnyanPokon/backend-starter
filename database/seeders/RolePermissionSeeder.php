@@ -24,16 +24,17 @@ class RolePermissionSeeder extends Seeder
             'manajemen_tiket',
             'manajemen_hari_layanan',
             'manajemen_user',
+            'manajemen_sesi_konseling',
 
             // konselor
             'read_jadwal_konselor',
             'read_konseli',
             'read_hari_layanan',
             'update_konselor',
+            'delete_sesi_konseling',
+            'update_sesi_konseling',
+            'read_sesi_konseling',
 
-            // konseli
-            'create_konseli',
-            'update_konseli',
         ];
 
 
@@ -59,8 +60,6 @@ class RolePermissionSeeder extends Seeder
         ]);
 
         $konseli->givePermissionTo([
-            'create_konseli',
-            'update_konseli',
         ]);
     }
 }

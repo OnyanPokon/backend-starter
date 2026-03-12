@@ -54,6 +54,7 @@ class TiketService
                 'konselor_id'      => $data['konselor_id'],
                 'hari_layanan_id'  => $data['hari_layanan_id'],
                 'deskripsi_keluhan' => $data['deskripsi_keluhan'],
+                'jenis_layanan' => $data['jenis_layanan'],
                 'jenis_keluhan' => $data['jenis_keluhan'],
             ]);
 

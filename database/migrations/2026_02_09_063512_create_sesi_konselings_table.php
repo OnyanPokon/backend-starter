@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('tiket_id')->constrained('tikets')->onDelete('cascade');
             $table->foreignId('konselor_id')->constrained('konselors')->onDelete('cascade');
             $table->foreignId('hari_layanan_id')->constrained('hari_layanans')->onDelete('cascade');
+            $table->date('tanggal_konseling');
             $table->time('jam_mulai');
             $table->time('jam_selesai');
             $table->string('tempat');

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('konselor_id')->constrained('konselors')->onDelete('cascade');
             $table->foreignId('hari_layanan_id')->constrained('hari_layanans')->onDelete('cascade');
             $table->text('deskripsi_keluhan');
+            $table->enum('jenis_layanan', ['bimbingan', 'konseling']);
             $table->enum('jenis_keluhan', ['sosial', 'pribadi', 'akademik', 'karir']);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->enum('urgensi', ['mendesak', 'cukup_mendesak', 'tidak_mendesak'])->default('tidak_mendesak');

@@ -25,7 +25,13 @@ class TiketResources extends JsonResource
                     'id' => $this->konseli->user->id,
                     'nama' => $this->konseli->user->name,
                     'email' => $this->konseli->user->email,
-                ]
+                ],
+                'phone' => $this->konseli->phone,
+                'domisili' => $this->konseli->domisili,
+                'jurusan' => $this->konseli->jurusan,
+                'umur' => $this->konseli->umur,
+                'jenis_kelamin' => $this->konseli->jenis_kelamin,
+
             ],
             'konselor' => [
                 'id' => $this->konselor->id,
@@ -42,6 +48,7 @@ class TiketResources extends JsonResource
             ],
             'deskripsi_keluhan' => $this->deskripsi_keluhan,
             'status' => $this->status,
+            'jenis_layanan' => $this->jenis_layanan,
             'jenis_keluhan' => $this->jenis_keluhan,
             'urgensi' => $this->urgensi,
             'created_at' => $this->created_at->format('d F Y'),

@@ -28,6 +28,7 @@ class TiketRequest extends FormRequest
                 'konseli_id' => 'required|exists:konselis,id',
                 'konselor_id' => 'required|exists:konselors,id',
                 'hari_layanan_id' => 'required|exists:hari_layanans,id',
+                'jenis_layanan' => 'required|in:bimbingan,konseling',
                 'jenis_keluhan' => 'required|in:sosial,pribadi,akademik,karir',
                 'deskripsi_keluhan' => 'required|string',
             ];
@@ -40,6 +41,7 @@ class TiketRequest extends FormRequest
                 'hari_layanan_id' => 'sometimes|required|exists:hari_layanans,id',
                 'deskripsi_keluhan' => 'sometimes|required|string',
                 'status' => 'sometimes|required|in:pending,approved,rejected',
+                'jenis_layanan' => 'sometimes|required|in:bimbingan,konseling',
                 'jenis_keluhan' => 'sometimes|required|in:sosial,pribadi,akademik,karir',
                 'urgensi' => 'sometimes|required|in:mendesak,cukup_mendesak,tidak_mendesak',
             ];
@@ -65,6 +67,8 @@ class TiketRequest extends FormRequest
             'urgensi.in' => 'Urgensi harus salah satu dari: mendesak, cukup_mendesak, tidak_mendesak.',
             'jenis_keluhan.required' => 'Jenis masalah wajib diisi.',
             'jenis_keluhan.in' => 'Jenis masalah harus salah satu dari: sosial, pribadi, karir, akademik.',
+            'jenis_layanan.required' => 'Jenis layanan wajib diisi.',
+            'jenis_layanan.in' => 'Jenis layanan harus salah satu dari: bimbingan, konseling.',
         ];
     }
 }

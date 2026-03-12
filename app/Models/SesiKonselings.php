@@ -10,6 +10,7 @@ class SesiKonselings extends Model
         'tiket_id',
         'konselor_id',
         'hari_layanan_id',
+        'tanggal_konseling',
         'jam_mulai',
         'jam_selesai',
         'tempat',

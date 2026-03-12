@@ -7,6 +7,8 @@ use App\Http\Controllers\Konselis\KonselisController;
 use App\Http\Controllers\Konselor\KonselorController;
 use App\Http\Controllers\SesiKonseling\SesiKonselingController;
 use App\Http\Controllers\Tiket\TiketController;
+use App\Http\Controllers\Ai\AiController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -71,6 +73,16 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::put("/{id}", "update");
         Route::delete("/{id}", "destroy");
     });
+
+    Route::post('/ai-chat', [AiController::class, 'chat']);
+
+    Route::get('/notifications', [NotificationController::class, 'index']);
+
+    Route::get('/notifications/unread', [NotificationController::class, 'unread']);
+
+    Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead']);
+
+    Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead']);
 });
 Route::prefix("auth")->controller(AuthController::class)->group(function () {
     Route::post("login", "login")->name('login');
